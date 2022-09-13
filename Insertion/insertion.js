@@ -41,7 +41,7 @@ const insertionSort = (arr, t = 0) => {
 //   }
 // };
 
-const array = [...new Array(21)].map(() => Math.round(Math.random() * 20));
+const array = [...new Array(200)].map(() => Math.round(Math.random() * 20));
 
 // const array = [];
 // for (let i = 0; i < 20; i++) {
@@ -54,7 +54,7 @@ flipArr(array);
 function draw() {
   rotate();
   background("black");
-  translate(width / 5, height / 1.5);
+  translate(width / 200, height / 1.5);
   stroke("white");
   noFill();
   strokeWeight(4);
@@ -64,7 +64,7 @@ function draw() {
     console.log(array);
     // logArr(array);
   }
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < array.length; i++) {
     push();
     stroke(
       color(
@@ -73,7 +73,7 @@ function draw() {
         Math.floor(Math.random() * (255 - 0 + 1) + 0)
       )
     );
-    line(i * 50, 31, i * 50, array[i] * 20, array[i] * 20, 45);
+    line(i * 10, 31, i * 10, array[i] * 20, array[i] * 20, 45);
     pop();
   }
 }
