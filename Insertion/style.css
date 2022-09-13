@@ -1,0 +1,9 @@
+/* This CSS aligns the P5 canvas to the top left corner of the screen */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
