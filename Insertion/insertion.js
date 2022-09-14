@@ -6,6 +6,7 @@ function setup() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+  frameRate(30);
 }
 
 const flipArr = (array) => {
@@ -15,6 +16,9 @@ const flipArr = (array) => {
 };
 
 let times = 0;
+let in_use1 = 0;
+let in_use2 = 0;
+let in_use3 = 0;
 const insertionSort = (arr, t = 0) => {
   flipArr(arr);
   for (let i = t; i < arr.length; i++) {
@@ -28,6 +32,9 @@ const insertionSort = (arr, t = 0) => {
     }
     arr[j + 1] = current;
     times += 1;
+    in_use1 = arr[j + 1];
+    in_use2 = arr[j];
+    in_use3 = arr[j - 1];
     flipArr(arr);
     return true;
   }
@@ -41,7 +48,7 @@ const insertionSort = (arr, t = 0) => {
 //   }
 // };
 
-const array = [...new Array(200)].map(() => Math.round(Math.random() * 20));
+const array = [...new Array(175)].map(() => Math.round(Math.random() * 20));
 
 // const array = [];
 // for (let i = 0; i < 20; i++) {
@@ -54,7 +61,7 @@ flipArr(array);
 function draw() {
   rotate();
   background("black");
-  translate(width / 200, height / 1.5);
+  translate(width / 200, height / 1.1);
   stroke("white");
   noFill();
   strokeWeight(4);
@@ -65,15 +72,36 @@ function draw() {
     // logArr(array);
   }
   for (let i = 0; i < array.length; i++) {
-    push();
-    stroke(
-      color(
-        Math.floor(Math.random() * (255 - 0 + 1) + 0),
-        Math.floor(Math.random() * (255 - 0 + 1) + 0),
-        Math.floor(Math.random() * (255 - 0 + 1) + 0)
-      )
-    );
-    line(i * 10, 31, i * 10, array[i] * 20, array[i] * 20, 45);
-    pop();
+    if (
+      array[i] == in_use1 ||
+      array[i] == in_use2 ||
+      array[i] == in_use1 * -1 ||
+      array[i] == in_use2 * -1 ||
+      array[i] == in_use3 ||
+      array[i] == in_use3 * -1
+    ) {
+      if (array[i] == in_use1 || array[i] == in_use1 * -1) {
+        in_use1 = 0;
+      } else if (array[i] == in_use2 || array[i] == in_use2 * -1) {
+        in_use2 = 0;
+      } else {
+        in_use3 = 0;
+      }
+      push();
+      stroke(
+        color(
+          Math.floor(Math.random() * (255 - 0 + 1) + 0),
+          Math.floor(Math.random() * (255 - 0 + 1) + 0),
+          Math.floor(Math.random() * (255 - 0 + 1) + 0)
+        )
+      );
+      line(i * 10, 31, i * 10, array[i] * 20, array[i] * 20, 45);
+      pop();
+    } else {
+      push();
+      stroke(color((253, 153, 132), (253, 153, 132), (253, 153, 132)));
+      line(i * 10, 31, i * 10, array[i] * 20, array[i] * 20, 45);
+      pop();
+    }
   }
 }
