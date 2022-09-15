@@ -2,11 +2,11 @@ function setup() {
   // The size of our starting canvas: 400px width, 400px height
   let CNV = createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
+  frameRate(30);
 }
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-  frameRate(30);
 }
 
 const flipArr = (array) => {
@@ -48,7 +48,7 @@ const insertionSort = (arr, t = 0) => {
 //   }
 // };
 
-const array = [...new Array(175)].map(() => Math.round(Math.random() * 20));
+const array = [...new Array(175)].map(() => Math.random() * (1600 - 2) + 2);
 
 // const array = [];
 // for (let i = 0; i < 20; i++) {
@@ -95,12 +95,12 @@ function draw() {
           Math.floor(Math.random() * (255 - 0 + 1) + 0)
         )
       );
-      line(i * 10, 31, i * 10, array[i] * 20, array[i] * 20, 45);
+      line(i * 10, 31, i * 10, array[i] * 0.5, array[i] * 20, 45);
       pop();
     } else {
       push();
       stroke(color((253, 153, 132), (253, 153, 132), (253, 153, 132)));
-      line(i * 10, 31, i * 10, array[i] * 20, array[i] * 20, 45);
+      line(i * 10, 31, i * 10, array[i] * 0.5, array[i] * 20, 45);
       pop();
     }
   }

@@ -49,7 +49,7 @@ const bubbleSort = (arr) => {
 //   }
 // };
 
-const array = [...new Array(175)].map(() => Math.round(Math.random() * 30));
+const array = [...new Array(175)].map(() => Math.random() * (1600 - 2) + 2);
 console.log(array);
 flipArr(array);
 
@@ -91,12 +91,12 @@ function draw() {
           Math.floor(Math.random() * (255 - 0 + 1) + 0)
         )
       );
-      line(i * 10, 31, i * 10, array[i] * 20, array[i] * 20, 45);
+      line(i * 10, 31, i * 10, array[i] * 0.5, array[i] * 20, 45);
       pop();
     } else {
       push();
       stroke(color((253, 153, 132), (253, 153, 132), (253, 153, 132)));
-      line(i * 10, 31, i * 10, array[i] * 20, array[i] * 20, 45);
+      line(i * 10, 31, i * 10, array[i] * 0.5, array[i] * 20, 45);
       pop();
     }
   }
