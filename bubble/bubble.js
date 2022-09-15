@@ -49,14 +49,14 @@ const bubbleSort = (arr) => {
 //   }
 // };
 
-const array = [...new Array(175)].map(() => Math.random() * (1600 - 2) + 2);
+const array = [...new Array(150)].map(() => Math.random() * (1600 - 2) + 2);
 console.log(array);
 flipArr(array);
 
 function draw() {
   rotate();
-  background("black");
-  translate(width / 200, height / 1.1);
+  background("#393d3f");
+  translate(width / 9, height / 1.1);
   stroke("white");
   text("Bubble Sort");
   noFill();
@@ -95,7 +95,7 @@ function draw() {
       pop();
     } else {
       push();
-      stroke(color((253, 153, 132), (253, 153, 132), (253, 153, 132)));
+      stroke(color("#7785ac"));
       line(i * 10, 31, i * 10, array[i] * 0.5, array[i] * 20, 45);
       pop();
     }
