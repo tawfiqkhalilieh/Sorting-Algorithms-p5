@@ -15,10 +15,13 @@ const flipArr = (array) => {
   }
 };
 
+const array = [...new Array(150)].map(() => Math.random() * (1600 - 2) + 2);
+console.log(array);
+flipArr(array);
+
 let times = 0;
-let in_use1 = 0;
-let in_use2 = 0;
-let in_use3 = 0;
+let in_use = [];
+
 const insertionSort = (arr, t = 0) => {
   flipArr(arr);
   for (let i = t; i < arr.length; i++) {
@@ -27,36 +30,21 @@ const insertionSort = (arr, t = 0) => {
     // The last element of our sorted subarray
     let j = i - 1;
     while (j > -1 && current < arr[j]) {
+      in_use.push(arr[j + 1] * -1);
+      in_use.push(arr[j] * -1);
+      in_use.push(arr[j + 1]);
+      in_use.push(arr[j] * -1);
       arr[j + 1] = arr[j];
       j--;
     }
     arr[j + 1] = current;
     times += 1;
-    in_use1 = arr[j + 1];
-    in_use2 = arr[j];
-    in_use3 = arr[j - 1];
     flipArr(arr);
     return true;
   }
   flipArr(arr);
   return false;
 };
-
-// const logArr = (arr) => {
-//   for (let i = 0; i < arr.length; i++) {
-//     console.log(arr[i] * -1);
-//   }
-// };
-
-const array = [...new Array(150)].map(() => Math.random() * (1600 - 2) + 2);
-
-// const array = [];
-// for (let i = 0; i < 20; i++) {
-//   array.push(20 - i);
-// }
-
-console.log(array);
-flipArr(array);
 
 function draw() {
   rotate();
@@ -67,26 +55,23 @@ function draw() {
   strokeWeight(4);
 
   if (!insertionSort(array, times)) {
+    in_use = [];
+
+    for (let i = 0; i < array.length; i++) {
+      push();
+      stroke(color("#7785ac"));
+      line(i * 10, 31, i * 10, array[i] * 0.5, array[i] * 20, 45);
+      pop();
+    }
+
     noLoop();
     console.log(array);
     // logArr(array);
   }
   for (let i = 0; i < array.length; i++) {
-    if (
-      array[i] == in_use1 ||
-      array[i] == in_use2 ||
-      array[i] == in_use1 * -1 ||
-      array[i] == in_use2 * -1 ||
-      array[i] == in_use3 ||
-      array[i] == in_use3 * -1
-    ) {
-      if (array[i] == in_use1 || array[i] == in_use1 * -1) {
-        in_use1 = 0;
-      } else if (array[i] == in_use2 || array[i] == in_use2 * -1) {
-        in_use2 = 0;
-      } else {
-        in_use3 = 0;
-      }
+    if (in_use.includes(array[i])) {
+      in_use.shift(array[i]);
+      in_use.shift(array[i] * -1);
       push();
       stroke(
         color(
