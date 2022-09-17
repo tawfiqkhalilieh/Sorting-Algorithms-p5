@@ -60,7 +60,6 @@ function quickSort(arr) {
   equal_arr.push(equal);
   right_arr.push(right);
 
-  //   return [...quickSort(right), ...equal, ...quickSort(left)];
   return true;
 }
 quickSort(array);

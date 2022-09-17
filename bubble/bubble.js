@@ -43,12 +43,6 @@ const bubbleSort = (arr) => {
   return false;
 };
 
-// const logArr = (arr) => {
-//   for (let i = 0; i < arr.length; i++) {
-//     console.log(arr[i] * -1);
-//   }
-// };
-
 const array = [...new Array(150)].map(() => Math.random() * (1600 - 2) + 2);
 console.log(array);
 flipArr(array);
