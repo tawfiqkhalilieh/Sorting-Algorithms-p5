@@ -77,15 +77,15 @@ async function draw() {
     old_arr.push(array[i]);
   }
   quickSort([
-    ...left_arr[left_arr.length - 1],
-    ...equal_arr[equal_arr.length - 1],
     ...right_arr[right_arr.length - 1],
+    ...equal_arr[equal_arr.length - 1],
+    ...left_arr[left_arr.length - 1],
   ]);
 
   array = [
-    ...left_arr[left_arr.length - 1],
-    ...equal_arr[equal_arr.length - 1],
     ...right_arr[right_arr.length - 1],
+    ...equal_arr[equal_arr.length - 1],
+    ...left_arr[left_arr.length - 1],
   ];
 
   for (let i = 0; i < array.length; i++) {
